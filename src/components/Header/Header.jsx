@@ -10,7 +10,8 @@ const Header = () => {
                     <Link className='text-lg font-semibold' to='/'>Home</Link>
                     <Link className='text-lg font-semibold' to='/blog'>Blog</Link>
                 </nav>
-                <h4>User Profile</h4>
+                {/* <h4>User Profile</h4> */}
+                <Link to='/login'><button>Login</button></Link>
             </div>
         </div>
     );
