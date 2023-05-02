@@ -1,8 +1,41 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { AuthContext } from '../../provider/AuthProvider';
 
 const Login = () => {
+    const { logInUser, handleGoogleAuth } = useContext(AuthContext);
+
+    const handleLogin = event => {
+        event.preventDefault();
+
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        logInUser(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
+        form.reset();
+    }
+
+    const handleGoogleLogin = () => {
+        handleGoogleAuth()
+            .then(result => {
+                const loginUser = result.user;
+                console.log(loginUser);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     return (
         <div className="pt-4 bg-base-200">
             <div className="hero-content flex-col">
@@ -10,7 +43,7 @@ const Login = () => {
                     <h1 className="text-5xl font-semibold mb-4">Please Login!</h1>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100">
-                    <form className="card-body">
+                    <form onSubmit={handleLogin} className="card-body">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-lg">Email</span>
@@ -29,11 +62,11 @@ const Login = () => {
                         <div className="form-control mt-2">
                             <button className="btn btn-primary">Login</button>
                         </div>
+                        <button onClick={handleGoogleLogin} className='bg-blue-600 rounded py-3 text-white'>Login With Google</button>
+                        <button className='bg-blue-600 rounded py-3 text-white'>Login With Github</button>
                         <label className="label">
                             <p>You don`t have account? <Link to="/register">Please Register</Link></p>
                         </label>
-                        <button className='bg-blue-600 rounded py-3 text-white'>Login With Google</button>
-                        <button className='bg-blue-600 rounded py-3 text-white'>Login With Github</button>
                     </form>
                 </div>
             </div>
