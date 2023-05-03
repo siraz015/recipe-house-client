@@ -12,6 +12,7 @@ import Blog from './components/Blog/Blog.jsx';
 import Login from './components/Login/Login.jsx';
 import Register from './components/Register/Register.jsx';
 import AuthProvider from './provider/AuthProvider.jsx';
+import ChiefDetails from './components/ChiefDetails/ChiefDetails.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,12 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>
-      }
+      },
+      {
+        path: '/allchief/:id',
+        element: <ChiefDetails></ChiefDetails>,
+        loader: ({params}) => fetch(`http://localhost:5000/allchief/${params.id}`)
+      },
     ]
   },
 ]);

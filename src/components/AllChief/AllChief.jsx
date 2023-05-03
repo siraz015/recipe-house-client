@@ -3,7 +3,6 @@ import Chief from '../Chief/Chief';
 
 const AllChief = () => {
     const [chefs, setChefs] = useState([]);
-    console.log('chefs', chefs);
 
     useEffect(() => {
         fetch('http://localhost:5000/allchief')
