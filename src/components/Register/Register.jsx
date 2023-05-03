@@ -5,7 +5,7 @@ import { updateProfile } from 'firebase/auth';
 
 
 const Register = () => {
-    const { createUser, handleGoogleAuth } = useContext(AuthContext);
+    const { createUser, handleGoogleAuth, handleGithubAuth } = useContext(AuthContext);
 
     const handleRegister = event => {
         event.preventDefault();
@@ -52,6 +52,17 @@ const Register = () => {
             })
     }
 
+    const handleGithuLogin = () => {
+        handleGithubAuth()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     return (
         <div className="pt-4 bg-base-200">
             <div className="hero-content flex-col">
@@ -88,7 +99,7 @@ const Register = () => {
                             <button className="btn btn-primary">Register</button>
                         </div>
                         <button onClick={handleGoogleLogin} className='bg-blue-600 rounded py-3 text-white'>Register With Google</button>
-                        <button className='bg-blue-600 rounded py-3 text-white'>Register With Github</button>
+                        <button onClick={handleGithuLogin} className='bg-blue-600 rounded py-3 text-white'>Register With Github</button>
                         <label className="label">
                             <p>You have already account? <Link to="/login">Please Login</Link></p>
                         </label>

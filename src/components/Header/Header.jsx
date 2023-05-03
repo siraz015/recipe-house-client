@@ -11,7 +11,10 @@ const Header = () => {
                     <Link className='text-lg font-semibold' to='/blog'>Blog</Link>
                 </nav>
                 {/* <h4>User Profile</h4> */}
-                <Link to='/login'><button>Login</button></Link>
+                <div className='flex gap-4'>
+                    <Link to='/login'><button>Login</button></Link>
+                    <Link to='/register'><button>Register</button></Link>
+                </div>
             </div>
         </div>
     );

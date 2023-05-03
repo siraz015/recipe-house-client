@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AuthContext } from '../../provider/AuthProvider';
 
 const Login = () => {
-    const { logInUser, handleGoogleAuth } = useContext(AuthContext);
+    const { logInUser, handleGoogleAuth, handleGithubAuth } = useContext(AuthContext);
 
     const handleLogin = event => {
         event.preventDefault();
@@ -30,6 +30,17 @@ const Login = () => {
             .then(result => {
                 const loginUser = result.user;
                 console.log(loginUser);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
+    const handleGithubLogin = () => {
+        handleGithubAuth()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
             })
             .catch(error => {
                 console.log(error);
@@ -63,7 +74,7 @@ const Login = () => {
                             <button className="btn btn-primary">Login</button>
                         </div>
                         <button onClick={handleGoogleLogin} className='bg-blue-600 rounded py-3 text-white'>Login With Google</button>
-                        <button className='bg-blue-600 rounded py-3 text-white'>Login With Github</button>
+                        <button onClick={handleGithubLogin} className='bg-blue-600 rounded py-3 text-white'>Login With Github</button>
                         <label className="label">
                             <p>You don`t have account? <Link to="/register">Please Register</Link></p>
                         </label>
