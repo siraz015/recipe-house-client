@@ -5,7 +5,7 @@ import { updateProfile } from 'firebase/auth';
 
 
 const Register = () => {
-    const { createUser, handleGoogleAuth, handleGithubAuth } = useContext(AuthContext);
+    const { createUser, handleGoogleAuth, handleGithubAuth, setUser } = useContext(AuthContext);
 
     const handleRegister = event => {
         event.preventDefault();
@@ -21,6 +21,7 @@ const Register = () => {
                 const registeredUser = result.user;
                 updateUserData(result.user, name, photoUrl)
                 console.log(registeredUser);
+                setUser(registeredUser)
             })
             .catch(error => {
                 console.log(error);
@@ -46,6 +47,7 @@ const Register = () => {
             .then(result => {
                 const loginUser = result.user;
                 console.log(loginUser);
+                setUser(loginUser)
             })
             .catch(error => {
                 console.log(error);
@@ -57,6 +59,7 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setUser(user)
             })
             .catch(error => {
                 console.log(error);

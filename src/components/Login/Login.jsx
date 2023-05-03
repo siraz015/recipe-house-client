@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AuthContext } from '../../provider/AuthProvider';
 
 const Login = () => {
-    const { logInUser, handleGoogleAuth, handleGithubAuth } = useContext(AuthContext);
+    const { logInUser, handleGoogleAuth, handleGithubAuth, setUser, user } = useContext(AuthContext);
 
     const handleLogin = event => {
         event.preventDefault();
@@ -17,6 +17,7 @@ const Login = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
+                setUser(loggedUser)
             })
             .catch(error => {
                 console.log(error);
