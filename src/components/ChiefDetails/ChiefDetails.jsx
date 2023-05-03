@@ -5,6 +5,7 @@ import { AuthContext } from '../../provider/AuthProvider';
 
 const ChiefDetails = () => {
     const [recipes, setRecipes] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const chiefDetails = useLoaderData();
 
@@ -15,12 +16,14 @@ const ChiefDetails = () => {
         fetch('http://localhost:5000/recipe')
             .then(res => res.json())
             .then(data => setRecipes(data))
+        setLoading(false)
     }, [])
     return (
         <div className='container'>
-            
 
-                <div>
+            <div>
+                {loading ? <div className='text-center mt-36'><div className="radial-progress mx-auto" style={{ "--value": 80 }}></div></div> : <div>
+
                     <div className='mx-auto p-20 '>
                         <div className="card card-compact bg-base-100 shadow-xl pb-20">
                             <figure><img className='rounded-full border-4  border-orange-500' src={picture} /></figure>
@@ -42,7 +45,11 @@ const ChiefDetails = () => {
                             recipes.map(recipe => <Recipes recipe={recipe}></Recipes>)
                         }
                     </div>
-                </div>
+
+                </div>}
+
+
+            </div>
         </div>
     );
 };

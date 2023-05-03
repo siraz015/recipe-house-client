@@ -13,6 +13,7 @@ import Login from './components/Login/Login.jsx';
 import Register from './components/Register/Register.jsx';
 import AuthProvider from './provider/AuthProvider.jsx';
 import ChiefDetails from './components/ChiefDetails/ChiefDetails.jsx';
+import PageNotFound from './components/PageNotFound/PageNotFound.jsx';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
         element: <ChiefDetails></ChiefDetails>,
         loader: ({params}) => fetch(`http://localhost:5000/allchief/${params.id}`)
       },
+      {
+        path: '*',
+        element: <PageNotFound></PageNotFound>
+      }
     ]
   },
 ]);
