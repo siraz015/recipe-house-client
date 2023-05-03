@@ -52,7 +52,10 @@ const AuthProvider = ({ children }) => {
         handleGithubAuth,
         setUser,
         user,
-        logOut
+        logOut,
+        loading,
+        setLoading
+        
     }
 
     return (
