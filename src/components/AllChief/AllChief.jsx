@@ -11,7 +11,7 @@ const AllChief = () => {
     }, [])
 
     return (
-        <div className='chefContainer container p-10 grid grid-cols-3'>
+        <div className='chefContainer container p-10 md:grid grid-cols-3'>
             {
                 chefs.map(chief => <Chief
                     key={chief.id}
