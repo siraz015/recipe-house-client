@@ -42,7 +42,10 @@ const ChiefDetails = () => {
                     <h2 className='text-center text-4xl font-bold'>Most <span className='text-orange-700'>Popular</span> and <span className='text-orange-700'>Favourite</span> <span> Recipe </span> </h2>
                     <div className='grid md:grid-cols-3 gap-10 container py-10 px-20'>
                         {
-                            recipes.map(recipe => <Recipes recipe={recipe}></Recipes>)
+                            recipes.map(recipe => <Recipes
+                                key={recipe.id}
+                                recipe={recipe}
+                            ></Recipes>)
                         }
                     </div>
 

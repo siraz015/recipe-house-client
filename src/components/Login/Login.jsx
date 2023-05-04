@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AuthContext } from '../../provider/AuthProvider';
 
 const Login = () => {
     const { logInUser, handleGoogleAuth, handleGithubAuth, setUser, user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
 
     const handleLogin = event => {
         event.preventDefault();
@@ -18,6 +21,7 @@ const Login = () => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 setUser(loggedUser)
+                navigate(from);
             })
             .catch(error => {
                 console.log(error);
@@ -31,6 +35,7 @@ const Login = () => {
             .then(result => {
                 const loginUser = result.user;
                 console.log(loginUser);
+                navigate(from);
             })
             .catch(error => {
                 console.log(error);
@@ -42,6 +47,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from);
             })
             .catch(error => {
                 console.log(error);

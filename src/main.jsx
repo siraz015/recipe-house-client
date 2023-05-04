@@ -14,6 +14,7 @@ import Register from './components/Register/Register.jsx';
 import AuthProvider from './provider/AuthProvider.jsx';
 import ChiefDetails from './components/ChiefDetails/ChiefDetails.jsx';
 import PageNotFound from './components/PageNotFound/PageNotFound.jsx';
+import PrivateRoute from './PrivateRoute/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/allchief/:id',
-        element: <ChiefDetails></ChiefDetails>,
+        element: <PrivateRoute><ChiefDetails></ChiefDetails></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/allchief/${params.id}`)
       },
       {
